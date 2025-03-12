@@ -21,6 +21,9 @@ chef-nginx-react/
 │   │   │   ├── default.rb          # Customizable variables
 │   │   ├── metadata.rb             # Cookbook metadata
 │   │   ├── Berksfile               # Dependency management
+│   │   ├── files/
+│   │   │   ├──  default/
+│   │   │   ├──────  react-demo-app
 │
 │── roles/
 │   ├── web_server.rb               # Role for Nginx server
@@ -84,4 +87,4 @@ If successful, you should see the React app served through Nginx.
 Feel free to submit **issues**, **PRs**, and suggestions! 🎉
 
 ## 📜 License
-GNU Public License V 2.0
+GNU Public License 
