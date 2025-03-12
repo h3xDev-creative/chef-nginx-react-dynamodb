@@ -1,0 +1,49 @@
+# templates/default/nginx.conf.erb
+
+server {
+    listen 80;
+    server_name <%= node['nginx']['server_name'] %>;  # Specify server name or IP address
+
+    # Root directory for the React app
+    root <%= node['nginx']['react_app_root'] %>;
+
+    index index.html;
+
+    # Nginx log files
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    # Proxy configuration to forward requests to the React app
+    location / {
+        try_files $uri /index.html =404;
+    }
+
+    # Enable compression for faster loading
+    gzip on;
+    gzip_types text/plain application/xml text/css application/javascript;
+
+    # Handling static assets
+    location /static/ {
+        root <%= node['nginx']['react_app_root'] %>;
+    }
+
+    # Error page configuration (Optional)
+    error_page 404 /index.html;
+    location = /index.html {
+        root <%= node['nginx']['react_app_root'] %>;
+        internal;
+    }
+
+    # Ensure Nginx always serves the app
+    location / {
+        root <%= node['nginx']['react_app_root'] %>;
+        try_files $uri /index.html;
+    }
+}
+
+# Redirect HTTP to HTTPS if applicable (you can skip this part if not using HTTPS)
+server {
+    listen 80;
+    server_name <%= node['nginx']['server_name'] %>;
+    return 301 https://$host$request_uri;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "staging",
+  "description": "Staging Environment for Nginx Reverse Proxy with React App",
+  "cookbook_versions": {
+    "nginx_reverse_proxy": "1.0.0"
+  },
+  "override_attributes": {
+    "nginx_reverse_proxy": {
+      "nginx": {
+        "server_name": "staging.example.com",  // Your staging domain name
+        "ssl_certificate": "/etc/ssl/certs/staging.example.com.crt",  // Path to SSL certificate
+        "ssl_certificate_key": "/etc/ssl/private/staging.example.com.key"  // Path to SSL private key
+      },
+      "dynamodb": {
+        "endpoint": "https://dynamodb.us-west-2.amazonaws.com",  // DynamoDB endpoint
+        "table_name": "staging-react-app-data"  // DynamoDB table for staging
+      }
+    }
+  }
+}

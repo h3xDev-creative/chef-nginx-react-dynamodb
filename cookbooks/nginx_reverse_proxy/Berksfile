@@ -1,0 +1,13 @@
+# Berksfile
+
+source 'https://supermarket.chef.io'
+
+# Dependency to manage Nginx installation and configuration
+cookbook 'nginx', '~> 10.0'
+
+# Dependency for AWS services (if you're managing DynamoDB through AWS SDK)
+cookbook 'aws', '~> 9.0'
+
+# Other dependencies can be added here as needed, for example:
+# cookbook 'mysql', '~> 8.0'
+# cookbook 'postgresql', '~> 7.0'
